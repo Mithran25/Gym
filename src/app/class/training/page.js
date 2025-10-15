@@ -13,7 +13,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const page = () => {
-  const cardio = JSON.parse(localStorage.getItem("cardio"));
+  if (typeof window !== "undefined") {
+  const value = localStorage.getItem("key");
+  // other localStorage code
+}
+
   const MotionLink = motion(Link);
 
   return (
