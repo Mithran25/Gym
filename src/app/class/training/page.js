@@ -23,6 +23,9 @@ if (typeof window !== "undefined") {
 }
   },[])
 
+  console.log(cardio);
+  
+
   const MotionLink = motion(Link);
 
   return (
@@ -30,7 +33,7 @@ if (typeof window !== "undefined") {
       <h2>Training</h2>
 
       <div>
-      {cardio && (
+      {cardio ?"": (
           <MotionLink
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}

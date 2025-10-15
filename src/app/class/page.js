@@ -24,6 +24,8 @@ const Class = () => {
   const handleClass = ()=>{
     setCradio(false);
   }
+  console.log("class"+cardio);
+  
 
   return (
     <section className="class">
