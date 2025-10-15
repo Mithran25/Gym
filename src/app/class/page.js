@@ -8,7 +8,7 @@ import Image from "next/image";
 import lean from "@/assets/lean.jpg";
 import fat from "@/assets/fat.jpg";
 import muscle from "@/assets/muscle.png";
-import { motion } from "framer-motion";
+
 
 const Class = () => {
 
@@ -24,7 +24,6 @@ const Class = () => {
   const handleClass = ()=>{
     setCradio(false);
   }
-  const MotionLink = motion(Link);
 
   return (
     <section className="class">
@@ -32,30 +31,18 @@ const Class = () => {
       <div className="class_want">
         <h2>Are You Trying To ?</h2>
         <div >
-          <MotionLink
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }} href="/class/training" onClick={handleClass}>
+          <Link href="/class/training" onClick={handleClass}>
             <Image src={muscle} alt="" />
             <h3>Build Muscle</h3>
-          </MotionLink>
-          <MotionLink
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }} href="/class/training" onClick={handleCardio}>
+          </Link>
+          <Link href="/class/training" onClick={handleCardio}>
             <Image src={fat} alt="" />
             <h3>Get Lean</h3>
-          </MotionLink>
-          <MotionLink
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }} href="/class/training" onClick={handleClass}>
+          </Link>
+          <Link href="/class/training" onClick={handleClass}>
             <Image src={lean} alt="" />
             <h3>Gain Weight</h3>
-          </MotionLink>
+          </Link>
         </div>
       </div>
     </section>
