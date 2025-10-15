@@ -11,11 +11,14 @@ import arms from "@/assets/arms.png";
 import cardioo from "@/assets/cardio.png";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const page = () => {
+
+    const[cardio,setCardio] = useState(null);
+
   if (typeof window !== "undefined") {
-  const value = localStorage.getItem("key");
-  // other localStorage code
+  setCardio(localStorage.getItem("cardio"));
 }
 
   const MotionLink = motion(Link);
