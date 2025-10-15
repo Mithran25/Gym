@@ -17,9 +17,11 @@ const page = () => {
 
     const[cardio,setCardio] = useState(null);
 
-  if (typeof window !== "undefined") {
-  setCardio(localStorage.getItem("cardio"));
+  useEffect(()=>{
+if (typeof window !== "undefined") {
+     setCardio(localStorage.getItem("cardio"));
 }
+  },[])
 
   const MotionLink = motion(Link);
 
