@@ -19,21 +19,17 @@ const page = () => {
 
   useEffect(()=>{
 if (typeof window !== "undefined") {
-     setCardio(localStorage.getItem("cardio"));
+     setCardio(JSON.parse(localStorage.getItem("cardio")));
 }
   },[])
-
-  console.log(cardio);
   
-
   const MotionLink = motion(Link);
 
   return (
     <section className="workout">
       <h2>Training</h2>
-
       <div>
-      {cardio ?"": (
+      {cardio && (
           <MotionLink
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -42,7 +38,7 @@ if (typeof window !== "undefined") {
             <Image src={cardioo} alt="" />
             <h4>Cardio</h4>
           </MotionLink>
-        )}
+        ) }
         <MotionLink
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}

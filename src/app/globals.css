@@ -11,32 +11,39 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(to bottom right ,#000308,#243B55);
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 /* html.no-scroll, body.no-scroll {
     overflow: hidden ;
 } */
 main {
-  height: 100vh;
+  overflow-x: hidden;
+  height: 90vh;
 }
 .home_background {
-  position: fixed;
+  /* position: fixed;
   top: 0;
-  left: 0;
+  left: 0; */
+  position: absolute;
   width: 100vw;
   height: 100vh;
+  top: 0;
   overflow: hidden;
   z-index: -2;
   > video {
     position: absolute;
-    object-fit: cover;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-  }
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-
+}
 .home-content {
   width: 60vw;
   padding-top: 34vh;
@@ -46,17 +53,23 @@ main {
   }
 }
 
+
+
 @media (max-width: 540px) {
   main {
-  height: 80vh;
+  height: 70vh;
+}
+.home_background{
+  height: 95vh;
 }
   .home-content {
     width: 90%;
-    padding-top: 24vh;
+    padding-top: 30vh;
     > h1 {
       font-size: 60px;
     }
   }
+
 }
 
 nav {
@@ -125,21 +138,175 @@ nav {
   }
 }
 
-.choose-us {
-  height: auto;
+
+
+.blog {
   width: 100%;
-  padding: 50px;
-  background-color: white;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   > h3 {
+    text-align: center;
+  }
+}
+
+.blogworkout_plan {
+  width: 90%;
+  height: 90vh;
+  display: grid;
+  grid-template-areas: "blog_content blog_img";
+  grid-template-columns: 40% 60%;
+  background: #F6F3ED;
+  padding: 20px;
+  border-radius: 20px
+}
+.blog_content {
+  width: 100%;
+  grid-area: blog_content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10vw;
+  > h2 {
+    font-size: 50px;
+    color: coral;
+  }
+  > p {
+    padding: 10px 0 10px 0;
+    font-size: 20px;
+  }
+  > a {
+    display: flex;
+    text-decoration: none;
+    >h5{
+      color: blue;
+    }
+  svg {
+    margin-left: 50px;
+    position: absolute;
+    width: 24px;
+    fill: blue;
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    :hover{
+      fill:rgb(0, 123, 255);
+    }
+  } 
+  :hover{
+    color: rgb(0, 123, 255);
+  }
+  }
+}
+
+.blog_card {
+  width: 100%;
+  height: 100%;
+  grid-area: blog_img;    
+  display: grid;
+  grid-template-areas: 'card_1 card_2''card_1 card_3';
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.img_card {
+  width: 250px;
+  height: 269px;
+  border-radius: 10px;
+}
+.card_1 {
+  grid-area: card_1;
+  width: 350px;
+  height: 100%;
+}
+.card_2 {
+  grid-area: card_2;
+}
+.card_3 {
+  grid-area: card_3;
+}
+.card_4 {
+  grid-area: card_4;
+}
+
+@media (max-width: 540px) {
+  .blog {
+    justify-content: flex-start;
+  }
+  .blogworkout_plan {
+    height: 77vh;
+    grid-template-areas:"blog_content" "blog_img" ;
+    grid-template-columns: 100%; 
+    grid-template-rows: 30% 70%;
+    padding: 20px;
+  }
+  .blog_content {
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 0%;
+    > h2 {
+      font-size: 30px;
+    }
+    >p{
+      padding: 0 0 0 0;
+    }
+  }
+  .blog_card {
+    gap: 10px;
+  }
+  .img_card {
+    width: 130px;
+    height: 160px;
+  }
+  .card_1{
+    width: 300px;
+    height: 100%;
+  }
+}
+.home-body{
+}
+.home-body::before{
+  overflow: hidden;
+  background-image: linear-gradient(to right ,#020b1b,#1b2c3f);
+  filter: blur(26px);
+  top: 90vh;
+  background-color: #ffffff;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 20vh;
+  z-index: -1;
+}
+
+@media (max-width:540px){
+  .home-body::before{
+    overflow: hidden;
+  top: 90vh;
+  height: 15vh;
+  }
+}
+
+.choose-us {
+  z-index: 2;
+  height: auto;
+  width: 100%;
+  /* background-color: rgb(18, 15, 41);
+  background-image: linear-gradient(to bottom right ,#000308,#243B55); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  > h3 {
     padding: 20px;
     text-align: center;
   }
   > section {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -148,12 +315,27 @@ nav {
   }
 }
 .plan_content {
-  width: 350px;
-  height: 300px;
+  width: 450px;
+  height: 400px;
   padding: 20px;
+  background: linear-gradient(to bottom right,#236467,#427A82);
+backdrop-filter: blur(8px);
+border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0.5;
+  border-radius: 20px;
+  /* background-image: linear-gradient(to bottom right ,#265d94,#5387cf); */
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   > h4 {
     padding: 20px 0 20px 0;
+  }
+  >p{
+    color: #e2e2e2;
   }
 }
 
@@ -170,150 +352,31 @@ nav {
   }
 }
 
-.blog {
-  width: 100%;
-  height: 100vh;
-  background-color: white;
-  padding-top: 10vh;
-  overflow: hidden;
-  > h3 {
-    text-align: center;
-  }
-}
-
-.blogworkout_plan {
-  width: 100%;
-  display: grid;
-  padding-top: 20px;
-  grid-template-areas: "blog_img blog_content";
-  grid-template-columns: 50% 50%;
-}
-.blog_content {
-  width: 100%;
-  grid-area: blog_content;
-  height: 100%;
-  > h2 {
-    font-size: 50px;
-    color: coral;
-  }
-  > p {
-    padding: 10px 0 10px 0;
-    width: 80%;
-    font-size: 20px;
-    line-height: 40px;
-    text-align: justify;
-  }
-  > a {
-    text-decoration: none;
-  }
-}
-.blog_img {
-  grid-area: blog_img;
-}
-
-.blog_card {
-  width: 400px;
-  height: 500px;
-  position: relative;
-  > p {
-    border: 1px solid;
-    width: 150px;
-    padding: 20px;
-    background-color: coral;
-    color: white;
-    border-radius: 20px;
-    text-align: center;
-  }
-  > p:last-child {
-    margin: 40vh 0 0 5vw;
-  }
-}
-.chest {
-  margin: 0 0 0 30vw;
-}
-
-.img_card {
-  position: absolute;
-  width: 250px;
-  height: 250px;
-  border-radius: 10px;
-}
-.card_1 {
-  margin-left: 5vw;
-  transform: rotateZ(-14deg);
-}
-.card_2 {
-  z-index: 2;
-  margin-left: 20vw;
-  margin-top: 25vh;
-  transform: rotateZ(10deg);
-}
-
-@media (max-width: 540px) {
-  .blog {
-    height: auto;
-    overflow: hidden;
-  }
-  .blogworkout_plan {
-    grid-template-areas: "blog_img" "blog_content";
-    grid-template-columns: 100%;
-  }
-  .blog_content {
-    margin-left: 10px;
-    width: 100%;
-    > h2 {
-      font-size: px;
-    }
-    > p {
-      width: 95%;
-      line-height: 30px;
-    }
-  }
-  .img_card {
-    width: 200px;
-    height: 200px;
-    border-radius: 10px;
-  }
-  .card_1 {
-    margin-left: 0vw;
-  }
-  .card_2 {
-    margin-left: 36vw;
-  }
-  .blog_card {
-    > p:last-child {
-      margin-top: 25vh;
-    }
-  }
-  .chest {
-    margin-left: 55vw;
-  }
-}
 
 .choosee {
+  z-index: 2;
   overflow: hidden;
   height: 100vh;
   width: 100%;
-  padding: 50px;
   background-color: rgba(35, 34, 34, 0.08);
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   > h3 {
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     color: #ffffff;
   }
 }
 .card-stack-container-wrapper {
-  width: 600px;
+  width: 350px;
   height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  margin: 50 auto;
+  margin-left: 50px;
   perspective: 1200px;
   transform-style: preserve-3d;
   overflow: hidden;
@@ -332,7 +395,9 @@ nav {
   align-items: center;
   flex-direction: column;
   background: rgba(255, 255, 255, 0.08);
-
+  backdrop-filter: blur(8px); 
+  -webkit-backdrop-filter: blur(8px); 
+  border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
   
   > h4 {
@@ -341,13 +406,7 @@ nav {
 }
 
 .top-card {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 128, 0, 0.9),
-    rgba(255, 69, 0, 0.9),
-    rgba(255, 0, 100, 0.9)
-  );
-  margin-left: 0px;
+    background: linear-gradient(to bottom right,#236467,#427A82);
   color: #fff;
   cursor: default;
   opacity: 1;
@@ -362,19 +421,12 @@ nav {
 }
 
 .plan_card:not(.top-card) {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 128, 0, 0.9),
-    rgba(255, 69, 0, 0.9),
-    rgba(255, 0, 100, 0.9)
-  );
-  margin: 10vh 0 0 20vw;
   cursor: pointer;
 }
 .plan_card:not(.top-card) p,
 .plan_card:not(.top-card) .img,
 .plan_card:not(.top-card) h4 {
-  
+  opacity: 0;
   pointer-events: none;
 }
 
@@ -389,11 +441,11 @@ nav {
   padding: 0;
   margin: 0;
   top: 90%;
-  left: 15%;
-  transform: translate(-20%, -0%);
+  left: 40%;
+  transform: translate(-50%, -50%);
 }
 .carousel-nav li {
-  background-color: #ff6e00;
+  background-color: #ffffff;
   padding: 10px;
   border-radius: 50%;
   width: 40px;
@@ -416,16 +468,16 @@ nav {
     display: none;
   }
   .choosee{
+    height: 80vh;
     display: flex;
   }
 }
 
 
-
 .class{
   width: 100%;
   height: 100vh;
-  background-color: rgb(225, 225, 225);
+  color: white;
   >h2{
     padding: 20px;
   }
@@ -440,8 +492,14 @@ nav {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    transition: transform 0.6s ease-in-out;
+    :hover{
+      transform: scale(1.01);
+    }
   >a{
-    background-color: white;
+    background:#C2CBD3;
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
     text-decoration: none;
     color: black;
     display: flex;
@@ -478,7 +536,7 @@ nav {
 }
 
 .workout{
-  background-color: rgb(225, 225, 225);
+  background-color: #BDBDBD;
   width: 100%;
   height: auto;
   padding-bottom: 10px;
@@ -519,7 +577,7 @@ nav {
 }
 
 .workout_class{
-  background-color: rgb(225, 225, 225);
+  background-color: #BDBDBD;
   width: 100%;
   height:auto;
   padding-bottom: 10px;
@@ -581,4 +639,8 @@ nav {
       height: 70px;
     }
   }
+}
+
+.training.active{
+  display: none;
 }

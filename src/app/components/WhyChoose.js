@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react'
+import React from "react";
 
 import Image from "next/image";
 import { Fragment, useState } from "react";
@@ -15,8 +15,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { MdArrowBackIos } from "react-icons/md";
 
 const WhyChoose = () => {
-  
-    const Plans = [
+  const Plans = [
     {
       id: 1,
       image: lesson,
@@ -69,32 +68,31 @@ const WhyChoose = () => {
     setActiveIndex((prev) => (prev - 1 + numCards) % numCards);
 
   const getCardStyles = (index) => {
-    
-    const diff = ( index - activeIndex + numCards ) % numCards;
+    const diff = (index - activeIndex + numCards) % numCards;
 
-    if ( diff > 3 ){
-      return{
-        transform : "translate3d(-300px , -300px , -300px)",
-        opacity:0,
-        zIndex : 1,
-        isTop : false,
-      }
+    if (diff > 3) {
+      return {
+        transform: "translate3d(-300px , 0 , -300px)",
+        opacity: 0,
+        zIndex: 1,
+        isTop: false,
+      };
     }
-    
-    const translateX = diff * 100;
-    const scale = 1 - diff * 0.05;
-    const opacity = 1 - diff *0.5;
+
+    const translateX = diff * 20;
+    const scale = 1 - diff * 0.03;
+    const opacity = 1 - diff * 0.2;
 
     return {
-      transform : `translateX(${translateX}px) scale(${scale})`,
+      transform: `translateX(${translateX}px) scale(${scale})`,
       opacity,
-      zIndex : 10 - diff,
-      isTop : diff === 0
-    }
-  }
+      zIndex: 10 - diff,
+      isTop: diff === 0,
+    };
+  };
   return (
-    <section>
-        <div className="choose-us">
+    <section className="home-body">
+      <div className="choose-us">
         <h3>Why Choose Us</h3>
         <section>
           {Plans.map((plan) => (
@@ -103,6 +101,10 @@ const WhyChoose = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, amount: 0.2 }}
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.3, ease: "easeInOut" },
+              }}
               key={plan.id}
               className="plan_content"
             >
@@ -116,39 +118,45 @@ const WhyChoose = () => {
 
       <div className="choosee">
         <h3>Why Choose Us</h3>
-            <section className="card-stack-container-wrapper"> 
-                
-                
-          {Plans.map((plan,i) => {
+        <section className="card-stack-container-wrapper">
+          {Plans.map((plan, i) => {
             const styles = getCardStyles(i);
-            return(
-            <motion.section
-              className={`plan_card ${styles.isTop ? "top-card" : ""}`}
-              animate={{
-                transform: styles.transform,
-                opacity: styles.opacity,
-                zIndex: styles.zIndex,
-              }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              onClick={styles.isTop ? handleRight : undefined}
-              key={plan.id}
-              
-              
-            >
-              <Image className="img" src={plan.image} width={70} height={50} alt="" />
-              <h4>{plan.title}</h4>
-              <p>{plan.content}</p>
-            </motion.section>
-          );
+            return (
+              <motion.section
+                className={`plan_card ${styles.isTop ? "top-card" : ""}`}
+                animate={{
+                  transform: styles.transform,
+                  opacity: styles.opacity,
+                  zIndex: styles.zIndex,
+                }}
+                transition={{ duration: 0.34, ease: "easeIn" }}
+                onClick={styles.isTop ? handleRight : undefined}
+                key={plan.id}
+              >
+                <Image
+                  className="img"
+                  src={plan.image}
+                  width={70}
+                  height={50}
+                  alt=""
+                />
+                <h4>{plan.title}</h4>
+                <p>{plan.content}</p>
+              </motion.section>
+            );
           })}
           <ul className="carousel-nav">
-                    <li onClick={handleLeft}><MdArrowBackIos /></li>
-                    <li onClick={handleRight}><MdArrowForwardIos /></li>
-                </ul>
+            <li onClick={handleLeft}>
+              <MdArrowBackIos />
+            </li>
+            <li onClick={handleRight}>
+              <MdArrowForwardIos />
+            </li>
+          </ul>
         </section>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default WhyChoose
+export default WhyChoose;

@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setOpen } from '@/store/isOpen';
 import Link from 'next/link';
 import Image from "next/image";
-import lean from "@/assets/lean.jpg";
-import fat from "@/assets/fat.jpg";
+import lean from "@/assets/lean.png";
+import fat from "@/assets/fat.png";
 import muscle from "@/assets/muscle.png";
 
 
@@ -24,7 +24,6 @@ const Class = () => {
   const handleClass = ()=>{
     setCradio(false);
   }
-  console.log("class"+cardio);
   
 
   return (

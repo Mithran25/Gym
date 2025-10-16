@@ -14,9 +14,6 @@ export default function Page() {
       <Home />
       <WhyChoose/>
       <Blog/>
-
-      
-
     </section>
   );
 }
