@@ -18,14 +18,14 @@ export default function Header() {
   }
   useEffect(() => {
         if (!isOpen) {
-            document.body.style.overflowY = 'hidden';
+            document.body.style.overflow = 'hidden';
         } else {
           
-            document.body.style.overflowY = 'scroll';
+            document.body.style.overflow = 'scroll';
         }
 
         return () => {
-            document.body.style.overflowY = 'scroll';
+            document.body.style.overflow = 'scroll';
         };
     }, [isOpen]); 
 
@@ -34,10 +34,10 @@ export default function Header() {
       <div>
         <Link href="/">GYM</Link>
       </div>
-      <div className={isOpen ? "":"nav active"}>
+      <div id='nav' className={isOpen ? "":"nav active"}>
         <div className='nav-content'>
         <Link href="/">Home</Link>
-        <Link href="/blog">Blog</Link>
+        <Link href="/class">Fitness</Link>
         <Link href="/">Member</Link>
       </div>
       <div className='login'>
