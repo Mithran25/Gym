@@ -17,7 +17,7 @@ export default function Page() {
       {/* <Anima/> */}
       <Card/>
       {/* <Blog/> */}
-      <Gsap/>
+      {/* <Gsap/> */}
 {/*       
       <Back/> */}
     </section>
