@@ -393,23 +393,9 @@ export default function Parallax() {
             ))}
             
             <motion.div className="progress" style={{ scaleX }} />
-            
-            <StyleSheet />  
            
         
         </div>
-    )
-}
-
-/**
- * ==============   Styles   ================
- */
-
-function StyleSheet() {
-    return (
-        <style>{`
-        
-    `}</style>
     )
 }
 
