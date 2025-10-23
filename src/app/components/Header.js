@@ -1,56 +1,57 @@
 "use client";
 
-import Link from 'next/link';
-import { useState , useEffect, useReducer } from 'react';
+import Link from "next/link";
+import { useState, useEffect, useReducer } from "react";
 import { FaBars } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
-import { useDispatch, useSelector } from 'react-redux';
-import { setOpen } from '@/store/isOpen';
+import { useDispatch, useSelector } from "react-redux";
+import { setOpen } from "@/store/isOpen";
 
 export default function Header() {
-
   const dispatch = useDispatch();
 
-  const isOpen = useSelector((state)=> state.isOpen)
+  const isOpen = useSelector((state) => state.isOpen);
 
-  const handleOpen=() => {
-    dispatch(setOpen(!isOpen))
-  }
+  const handleOpen = () => {
+    dispatch(setOpen(!isOpen));
+  };
   useEffect(() => {
-        if (!isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-          
-            document.body.style.overflow = 'scroll';
-        }
+    if (!isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "scroll";
+    }
 
-        return () => {
-            document.body.style.overflow = 'scroll';
-        };
-    }, [isOpen]); 
+    return () => {
+      document.body.style.overflow = "scroll";
+    };
+  }, [isOpen]);
 
   return (
     <nav>
       <div>
         <Link href="/">GYM</Link>
       </div>
-      <div id='nav' className={isOpen ? "":"nav active"}>
-        <div className='nav-content'>
-        <Link href="/">Home</Link>
-        <Link href="/class">Fitness</Link>
-        <Link href="/">Member</Link>
-      </div>
-      <div className='login'>
-        <Link href="/">Login</Link>
-      </div>
+      <div id="nav" className={isOpen ? "" : "nav active"}>
+        <div className="nav-content">
+          <Link href="/">Home</Link>
+          <Link href="/class">Fitness</Link>
+          <Link href="/">Member</Link>
+        </div>
+        <div className="login">
+          <Link href="/">Login</Link>
+        </div>
       </div>
       <div>
-        {isOpen ? <FaBars onClick={handleOpen} /> : <MdOutlineCancel onClick={handleOpen}/>}
+        {isOpen ? (
+          <FaBars onClick={handleOpen} />
+        ) : (
+          <MdOutlineCancel onClick={handleOpen} />
+        )}
       </div>
     </nav>
   );
 }
-
 
 // .text-choose {
 //   transform: translateY(120px);
@@ -90,7 +91,6 @@ export default function Header() {
 //     padding: 20px 0 20px 0;
 //   }
 // }
-
 
 // @media (max-width: 540px) {
 //   .choose-us {

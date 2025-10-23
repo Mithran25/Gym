@@ -27,7 +27,7 @@
             whileInView={{ opacity: 1, z: 0,scale:1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true, amount: 0.2 }} className="img_card card_1" src={gym_1} alt=""></MotionImage>
-              <MotionImage
+              {/* <MotionImage
             initial={{ opacity: 0, z: 100 }}
             whileInView={{ opacity: 1, z: 0 }}
             transition={{ duration: 0.6 }}
@@ -37,7 +37,7 @@
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true, amount: 0.2 }} className="img_card card_3" src={gym_3} alt=""></MotionImage>
-              {/* <Image className="img_card card_4" src={shoulder} alt=""></Image> */}
+              <Image className="img_card card_4" src={shoulder} alt=""></Image> */}
 
           </div>
             <div className="blog_content">
