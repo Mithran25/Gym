@@ -6,7 +6,6 @@
   import gym_2 from "@/assets/young-fitness-man-studio.jpg";
   import gym_3 from "@/assets/fitness-rings-7530142_1280.jpg";
   import Link from "next/link";
-  import Button from "@/app/components/Button.js"
   import { motion } from "framer-motion";
 
   const MotionImage = motion(Image);
