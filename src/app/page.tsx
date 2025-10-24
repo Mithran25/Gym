@@ -2,7 +2,7 @@ import Header from "@/app/components/Header";
 import Blog from "@/app/blog/page";
 import Card from "@/app/components/Card";
 import Home from "@/app/components/Home";
-import Gsap from "@/app/components/Gsap";
+import About from "@/app/components/About";
 
 export default function Page() {
   return (
@@ -11,7 +11,9 @@ export default function Page() {
       <Home />
       <Card />
 
-      <Gsap />
+      {/* <Gsap /> */}
+      <Blog/>
+      <About/>
     </section>
   );
 }

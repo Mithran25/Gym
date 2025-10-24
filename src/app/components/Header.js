@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect, useReducer } from "react";
 import { FaBars } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpen } from "@/store/isOpen";
@@ -46,7 +47,7 @@ export default function Header() {
         {isOpen ? (
           <FaBars onClick={handleOpen} />
         ) : (
-          <MdOutlineCancel onClick={handleOpen} />
+          <FaXmark onClick={handleOpen} />
         )}
       </div>
     </nav>

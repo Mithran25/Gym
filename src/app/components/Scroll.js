@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useLayoutEffect, forwardRef } from "react";
+import React, { useEffect, useRef, useLayoutEffect, forwardRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
@@ -12,27 +12,23 @@ const useFeatureAnimations = (
   scrollContainerRef,
   progressBarRef,
   cardRefs,
+  isDesktop,
   maxScrollHeight
 ) => {
   useLayoutEffect(() => {
-    if (
-      !containerRef.current ||
-      !scrollContainerRef.current ||
-      cardRefs.current.length === 0
-    )
-      return;
+    if (!containerRef.current || !scrollContainerRef.current || cardRefs.current.length === 0) return;
 
     let ctx = gsap.context(() => {
-      const scrollWidth = scrollContainerRef.current.scrollWidth || 0;
-      const containerWidth = containerRef.current.offsetWidth || 0;
-      const cardWidth = cardRefs.current[0].offsetWidth || 0;
-      const viewportOffset = (containerWidth - cardWidth) / 2;
+      if (isDesktop) {
+        const scrollWidth = scrollContainerRef.current.scrollWidth || 0;
+        const containerWidth = containerRef.current.offsetWidth || 0;
+        const cardWidth = cardRefs.current[0].offsetWidth || 0;
+        const viewportOffset = (containerWidth - cardWidth) / 2;
 
-      const finalOffset = scrollWidth - containerWidth + viewportOffset;
-      const scrollDistance = maxScrollHeight || finalOffset;
+        const finalOffset = scrollWidth - containerWidth + viewportOffset;
+        const scrollDistance = maxScrollHeight || finalOffset;
 
-      gsap
-        .timeline({
+        gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
@@ -41,30 +37,52 @@ const useFeatureAnimations = (
             pin: true,
             invalidateOnRefresh: true,
           },
-        })
-        .fromTo(
+        }).fromTo(
           scrollContainerRef.current,
           { x: viewportOffset },
           { x: -finalOffset + viewportOffset, ease: "none" }
         );
 
-      gsap.to(progressBarRef.current, {
-        width: "100%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: () => `+=${scrollDistance}`,
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
-      });
+        gsap.to(progressBarRef.current, {
+          width: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: () => `+=${scrollDistance}`,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        });
+      } else {
+        // For mobile, simple fade-in animations for each card
+        cardRefs.current.forEach((card, index) => {
+          if (card) {
+            gsap.fromTo(
+              card,
+              { opacity: 0, x: index % 2 === 0 ? -200 : 200 },
+              {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top 80%",
+                  toggleActions: "play none none none",
+                  once: true,
+                },
+              }
+            );
+          }
+        });
+      }
     }, containerRef);
 
     return () => {
       ctx.revert();
     };
-  }, [maxScrollHeight]);
+  }, [isDesktop, maxScrollHeight]);
 };
 
 const Scroll = forwardRef(({ features, className, maxScrollHeight }, ref) => {
@@ -73,10 +91,17 @@ const Scroll = forwardRef(({ features, className, maxScrollHeight }, ref) => {
   const progressBarRef = useRef(null);
   const cardRefs = useRef([]);
 
+  const [isDesktop, setIsDesktop] = useState(false);
+
   useEffect(() => {
-    const handleResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const checkDesktop = () => {
+      setIsDesktop(window.matchMedia("(min-width: 768px)").matches);
+      ScrollTrigger.refresh();
+    };
+    checkDesktop();
+
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
   useFeatureAnimations(
@@ -84,6 +109,7 @@ const Scroll = forwardRef(({ features, className, maxScrollHeight }, ref) => {
     scrollContainerRef,
     progressBarRef,
     cardRefs,
+    isDesktop,
     maxScrollHeight
   );
 
@@ -121,9 +147,7 @@ const Scroll = forwardRef(({ features, className, maxScrollHeight }, ref) => {
             >
               <div
                 className={`flex flex-col items-center justify-center h-full text-center
-                 ${
-                   !feature.image ? "text-white" : ""
-                 }`}
+                 ${!feature.image ? "text-white" : ""}`}
               >
                 <div
                   id="feature-content"
@@ -157,10 +181,24 @@ const Scroll = forwardRef(({ features, className, maxScrollHeight }, ref) => {
       >
         <div
           ref={scrollContainerRef}
-          className="flex flex-row gap-8 items-center h-full px-6 whitespace-nowrap"
+          className={isDesktop
+            ? "flex flex-row gap-8 items-center h-full px-6 whitespace-nowrap"
+            : "flex flex-col gap-8 items-center h-full px-6"}
         >
           {renderFeatureCards(features, cardRefs)}
         </div>
+
+        {isDesktop && (
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-64 h-2 bg-black/30 dark:bg-white/30 z-50 overflow-hidden rounded-full">
+            <div
+              ref={progressBarRef}
+              className="h-full rounded-full relative overflow-hidden transition-all duration-100"
+              style={{ width: "0%" }}
+            >
+              <div className="absolute inset-0 animated-water" />
+            </div>
+          </div>
+        )}
       </div>
       <style>{`
         .animated-water {
