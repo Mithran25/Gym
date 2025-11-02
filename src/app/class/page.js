@@ -8,7 +8,7 @@ import Image from "next/image";
 import lean from "@/assets/lean.png";
 import fat from "@/assets/fat.png";
 import muscle from "@/assets/muscle.png";
-
+import { IoArrowUndoOutline } from "react-icons/io5";
 
 const Class = () => {
 
@@ -28,6 +28,7 @@ const Class = () => {
 
   return (
     <section className="class">
+    <Link href="/" className="backtohome"><IoArrowUndoOutline />Home</Link>
         <h2>Hi,</h2>
       <div className="class_want">
         <h2>Are You Trying To ?</h2>

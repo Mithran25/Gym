@@ -11,6 +11,14 @@ import boxing from "@/assets/boxing-glove.png";
 import cycling from "@/assets/cycling.png";
 import price from "@/assets/best-price.png";
 import { motion } from "framer-motion";
+import { MdLibraryBooks } from "react-icons/md";
+import { CgGym } from "react-icons/cg";
+import {
+  GiFruitBowl,
+  GiBoxingGloveSurprise,
+  GiTakeMyMoney,
+} from "react-icons/gi";
+import { BiCycling } from "react-icons/bi";
 import { MdArrowForwardIos } from "react-icons/md";
 import { MdArrowBackIos } from "react-icons/md";
 
@@ -18,45 +26,39 @@ const WhyChoose = () => {
   const Plans = [
     {
       id: 1,
-      image: lesson,
+      icon: <MdLibraryBooks size={80} color="white" />,
       title: "Free Lesson",
-      content:
-        "Our FREE LESSON offers you a risk-free start, allowing you to sample our expert training.",
+      content: "Our FREE LESSON offers you a risk-free start.",
     },
     {
       id: 2,
-      image: workout,
+      icon: <CgGym size={80} color="white" />,
       title: "Workout",
-      content:
-        "Our professional WORKOUT programs are customized for maximum results, ensuring you train smarter, not just harder.",
+      content: "Professional WORKOUT programs customized for you.",
     },
     {
       id: 3,
-      image: food,
+      icon: <GiFruitBowl size={80} color="white" />,
       title: "Protein",
-      content:
-        "We offer FOOD and nutrition guidance, because true fitness starts in the kitchen.",
+      content: "Food and nutrition guidance for your fitness.",
     },
     {
       id: 4,
-      image: boxing,
+      icon: <GiBoxingGloveSurprise size={80} color="white" />,
       title: "Boxing",
-      content:
-        "For dynamic training, explore specialized sessions like BOXING for cardio and strength.",
+      content: "Specialized sessions like BOXING for cardio and strength.",
     },
     {
       id: 5,
-      image: cycling,
+      icon: <BiCycling size={80} color="white" />,
       title: "Cycling",
-      content:
-        "For dynamic training, explore specialized sessions like CYCLING for endurance.",
+      content: "Specialized sessions like CYCLING for endurance.",
     },
     {
       id: 6,
-      image: price,
-      title: "Price",
-      content:
-        "Join us today and discover premium coaching and facilities—all available at the best PRICE.",
+      icon: <GiTakeMyMoney size={80} color="white" />,
+      title: "Membership",
+      content: "Affordable Fitness Plans and Premium coaching.",
     },
   ];
 
@@ -100,15 +102,15 @@ const WhyChoose = () => {
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true }}
               whileHover={{
-                scale: 1.05,
+                transform:"translateY(-20px)",
                 transition: { duration: 0.3, ease: "easeInOut" },
               }}
               key={plan.id}
               className="plan_content"
             >
-              <Image src={plan.image} width={70} height={50} alt="" />
+              <p>{plan.icon}</p>
               <h4>{plan.title}</h4>
               <p>{plan.content}</p>
             </motion.section>
@@ -116,7 +118,7 @@ const WhyChoose = () => {
         </section>
       </div>
 
-      <div className="choosee">
+      {/* <div className="choosee">
         <h3>Why Choose Us</h3>
         <section className="card-stack-container-wrapper">
           {Plans.map((plan, i) => {
@@ -154,7 +156,7 @@ const WhyChoose = () => {
             </li>
           </ul>
         </section>
-      </div>
+      </div> */}
     </section>
   );
 };

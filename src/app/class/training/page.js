@@ -12,6 +12,7 @@ import cardioo from "@/assets/cardio.png";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { IoArrowUndoOutline } from "react-icons/io5";
 
 const page = () => {
 
@@ -27,6 +28,7 @@ if (typeof window !== "undefined") {
 
   return (
     <section className="workout">
+    <Link href="/" className="backtohome"><IoArrowUndoOutline />Home</Link>
       <h2>Training</h2>
       <div>
       {cardio && (
@@ -34,7 +36,7 @@ if (typeof window !== "undefined") {
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }} href="/class/training/cardio" className="training">
+          viewport={{ once: true}} href="/class/training/cardio" className="training">
             <Image src={cardioo} alt="" />
             <h4>Cardio</h4>
           </MotionLink>
@@ -43,7 +45,7 @@ if (typeof window !== "undefined") {
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }} href="/class/training/chest" className="training">
+          viewport={{ once: true}} href="/class/training/chest" className="training">
           <Image src={chest} alt="" />
           <h4>Chest Workout</h4>
         </MotionLink>
@@ -51,7 +53,7 @@ if (typeof window !== "undefined") {
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }} href="/class/training/back" className="training">
+          viewport={{ once: true}} href="/class/training/back" className="training">
           <Image src={back} alt="" />
           <h4>Back Workout</h4>
         </MotionLink>
@@ -59,7 +61,7 @@ if (typeof window !== "undefined") {
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }} href="/class/training/leg" className="training">
+          viewport={{ once: true}} href="/class/training/leg" className="training">
           <Image src={leg} alt="" />
           <h4>Leg Workout</h4>
         </MotionLink>
@@ -67,7 +69,7 @@ if (typeof window !== "undefined") {
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }} href="/class/training/shoulder" className="training">
+          viewport={{ once: true}} href="/class/training/shoulder" className="training">
           <Image src={shoulder} alt="" />
           <h4>Shoulder Workout</h4>
         </MotionLink>
@@ -75,7 +77,7 @@ if (typeof window !== "undefined") {
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }} href="/class/training/abs" className="training">
+          viewport={{ once: true}} href="/class/training/abs" className="training">
           <Image src={abs} alt="" />
           <h4>Abs</h4>
         </MotionLink>
@@ -83,7 +85,7 @@ if (typeof window !== "undefined") {
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }} href="/class/training/arms" className="training">
+          viewport={{ once: true}} href="/class/training/arms" className="training">
           <Image src={arms} alt="" />
           <h4>Arms ( Biceps + Triceps )</h4>
         </MotionLink>

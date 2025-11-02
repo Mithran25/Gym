@@ -7,6 +7,8 @@ import { FaXmark } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpen } from "@/store/isOpen";
+import Image from "next/image";
+import logo from "@/assets/gymlogo.png"
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -30,24 +32,25 @@ export default function Header() {
 
   return (
     <nav>
-      <div>
-        <Link href="/">GYM</Link>
+      <div className="gym">
+        <Image src={logo} alt="logo"></Image>
+        <h3>SJ Arnold <br></br> Fitness</h3>
       </div>
       <div id="nav" className={isOpen ? "" : "nav active"}>
         <div className="nav-content">
           <Link href="/">Home</Link>
           <Link href="/class">Fitness</Link>
-          <Link href="/">Member</Link>
+          <Link href="#about">About</Link>
         </div>
-        <div className="login">
+        {/* <div className="login">
           <Link href="/">Login</Link>
-        </div>
+        </div> */}
       </div>
-      <div>
+      <div className="nav-icon">
         {isOpen ? (
-          <FaBars onClick={handleOpen} />
+          <FaBars className="header-icon" onClick={handleOpen} />
         ) : (
-          <FaXmark onClick={handleOpen} />
+          <FaXmark className="header-icon" onClick={handleOpen} />
         )}
       </div>
     </nav>

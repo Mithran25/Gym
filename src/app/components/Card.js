@@ -97,7 +97,6 @@ export default function Parallax() {
         <Imagee key={plan.id} plan={plan} />
       ))}
 
-      <motion.div className="progress" style={{ scaleX }} />
     </div>
   );
 }
