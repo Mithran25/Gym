@@ -10,7 +10,7 @@ import leg from "@/assets/leg.png";
 import arms from "@/assets/arms.png";
 import cardioo from "@/assets/cardio.png";
 import golden from "@/assets/blob-haikei.png";
-import arnold from "@/assets/arnold.png";
+import arnold from "@/assets/gymlogo.png";
 import we from "@/assets/Weroom.png";
 
 const About = () => {
